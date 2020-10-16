@@ -1,0 +1,41 @@
+<h1>Blog / Entry / Comments</h1>
+
+<h4>id : <%= @blog.id %> </h4> 
+<h4>Title : <%= @blog.title %> </h4> 
+<h4>id : <%= @entry.id %></h4>
+<h4>Title : <%= @entry.title %></h4>
+<h4>Body : <%= @entry.body %></h4>
+
+<table>
+    <thead>
+        <tr>
+            <th>id</th>
+            <th>body</th>
+            <th>status</th>
+            <th>entry_id</th>
+            <th colspan="1"></th>
+            </body>
+        </tr>
+    </thead>
+    <tbody>
+        <% @comments.each do |comment| %>
+            <tr>
+                <% if comment.status == 'approved' %>
+                    <td><%= comment.id %></td>
+                    <td><%= comment.body %></td>
+                    <td><%= comment.status %></td>
+                    <td><%= comment.entry_id %></td>
+                <% else %>
+                    <td><%= comment.id %></<td>
+                    <td></td>
+                    <td><%= link_to 'unapproved', search2_blog_entry_comment_path(:id => comment.id) %></td>   
+                    <td><%= comment.entry_id %></td>
+                <% end %>
+                <td><%= link_to 'Destroy', blog_entry_comment_path(@blog, @entry, comment), method: :delete, data: { confirm: '削除してよろしいですか?' } %></td>
+            </tr>
+        <% end %>
+    </tbody>
+</table>
+
+<%= link_to '新規', new_blog_entry_comment_path %> | <%= link_to '戻る', blog_entries_path %> 
+

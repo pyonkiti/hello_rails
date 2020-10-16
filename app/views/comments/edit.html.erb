@@ -1,0 +1,31 @@
+<h1>Editing Comment</h1>
+
+<%= form_with(model: @comment, url: [@blog, @entry, @comment], local: true) do |form| %>
+  <% if @comment.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@comment.errors.count, "error") %> prohibited this comment from being saved:</h2>
+
+      <ul>
+      <% @comment.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :body %>
+    <%= form.text_area :body %>
+  </div>
+
+  <div class="field">
+    <%= form.label :status %>
+    <%= form.text_field :status, value: 'approved' %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit "更新" %>
+  </div>
+<% end %>
+
+<%= link_to '戻る', blog_entry_comments_path %>

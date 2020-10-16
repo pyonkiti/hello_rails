@@ -1,0 +1,24 @@
+<h1>Blogs</h1>
+<table>
+    <head>
+        <tr>
+            <th>ID</th>    
+            <th>タイトル</th>
+            <th colspan="4"></th>
+        </tr>
+    </head>
+    <body>
+        <% @blogs.each do |blog| %>
+        <tr>
+            <td><%= blog.id %></td>
+            <td><%= blog.title %></td>
+            <td><%= link_to 'Show', blog %></td>
+            <td><%= link_to 'Edit', edit_blog_path(blog) %></td>
+            <td><%= link_to 'Destroy', blog, method: :delete, data: {confirm: '削除していいですか？' } %></td>
+            <td><%= link_to 'To Entry', blog_entries_path(blog) %></td>
+            </tr>
+        <% end %>
+    </body>
+</table>
+<br>
+<%= link_to '新規', new_blog_path %>

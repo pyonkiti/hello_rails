@@ -1,0 +1,15 @@
+<h1>Blogs#edit</h1>
+
+<%= form_with(model: @blog, local: true) do |form| %>
+
+  <div class="field">
+    <%= form.label :title %>
+    <%= form.text_field :title %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>
+
+<%= link_to '戻る', blogs_path %>

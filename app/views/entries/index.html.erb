@@ -1,0 +1,37 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Blog/Entries</h1>
+
+<h3>id: <%= @blog.id %></h3>
+<h3>Title: <%= @blog.title %></h3>
+
+
+<table>
+  <thead>
+    <tr>
+      <th>id</th>
+      <th>Title</th>
+      <th>Body</th>
+      <th>blog_id</th>
+      <th colspan="4"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @entries.each do |entry| %>
+      <tr>
+        <td><%= entry.id %></td>
+        <td><%= entry.title %></td>
+        <td><%= entry.body %></td>
+        <td><%= entry.blog_id %></td>
+        <td><%= link_to 'Show', blog_entry_path(@blog, entry) %></td>
+        <td><%= link_to 'Edit', edit_blog_entry_path(@blog, entry) %></td>
+        <td><%= link_to 'Destroy', blog_entry_path(@blog, entry), method: :delete, data: { confirm: '削除してよろしいですか?' } %></td>
+        <td><%= link_to 'To Comment', blog_entry_comments_path(@blog, entry) %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+<%= link_to '新規', new_blog_entry_path %> | <%= link_to '戻る', blogs_path %> 
